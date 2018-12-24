@@ -3,7 +3,11 @@
 ;; Copyright (C) 2018  Brady Trainor
 
 ;; Author: Brady Trainor <mail@bradyt.com>
+;; Version: 0.0.1
 ;; Keywords:convenience
+;; Homepage: https://github.com/bradyt/arrow
+;; Package-Requires: ((emacs "24"))
+
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -20,50 +24,67 @@
 
 ;;; Commentary:
 
-;;
+;; error: Package should have a non-empty ;;; Commentary section.
 
 ;;; Code:
 
-(defun my-window-increase-height ()
+(when (require 'evil nil t)
+  (define-key evil-motion-state-map [left] nil)
+  (define-key evil-motion-state-map [right] nil)
+  (define-key evil-motion-state-map [up] nil)
+  (define-key evil-motion-state-map [down] nil))
+
+(defun arrow-window-increase-height ()
+  "Increase window height."
   (interactive)
   (if (window-in-direction 'down)
       (enlarge-window 1)
     (shrink-window 1)))
 
-(defun my-window-decrease-height ()
+(defun arrow-window-decrease-height ()
+  "Decrease window height."
   (interactive)
   (if (window-in-direction 'down)
       (shrink-window 1)
     (enlarge-window 1)))
 
-(defun my-window-increase-width ()
+(defun arrow-window-increase-width ()
+  "Increase window width."
   (interactive)
   (if (window-in-direction 'right)
       (enlarge-window-horizontally 4)
     (shrink-window-horizontally 4)))
 
-(defun my-window-decrease-width ()
+(defun arrow-window-decrease-width ()
+  "Decrease window width."
   (interactive)
   (if (window-in-direction 'right)
       (shrink-window-horizontally 4)
     (enlarge-window-horizontally 4)))
 
-(defun my-scroll-right ()
+(defun arrow-scroll-right ()
+  "Scroll right."
   (interactive)
   (scroll-right 1))
 
-(defun my-scroll-left ()
+(defun arrow-scroll-left ()
+  "Scroll left."
   (interactive)
   (scroll-left 1))
 
 (define-minor-mode arrow nil
-  :keymap `((,(kbd "<M-down>") . my-window-increase-height)
-            (,(kbd "<M-up>") . my-window-decrease-height)
-            (,(kbd "<M-right>") . my-window-increase-width)
-            (,(kbd "<M-left>") . my-window-decrease-width)
-            (,(kbd "<wheel-right>") . my-scroll-right)
-            (,(kbd "<wheel-left>") . my-scroll-left)))
+  :global t
+  :require 'arrow
+  :keymap `((,(kbd "<M-down>")      . arrow-window-increase-height)
+            (,(kbd "<M-up>")        . arrow-window-decrease-height)
+            (,(kbd "<M-right>")     . arrow-window-increase-width)
+            (,(kbd "<M-left>")      . arrow-window-decrease-width)
+            (,(kbd "<down>")        . windmove-down)
+            (,(kbd "<up>")          . windmove-up)
+            (,(kbd "<right>")       . windmove-right)
+            (,(kbd "<left>")        . windmove-left)
+            (,(kbd "<wheel-right>") . arrow-scroll-left)
+            (,(kbd "<wheel-left>")  . arrow-scroll-right)))
 
 (provide 'arrow)
 ;;; arrow.el ends here
-
