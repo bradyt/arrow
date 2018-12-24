@@ -72,7 +72,7 @@
   (interactive)
   (scroll-left 1))
 
-(define-minor-mode arrow nil
+(define-minor-mode arrow-mode nil
   :global t
   :require 'arrow
   :keymap `((,(kbd "<M-down>")      . arrow-window-increase-height)
