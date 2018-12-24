@@ -24,7 +24,17 @@
 
 ;;; Commentary:
 
-;; error: Package should have a non-empty ;;; Commentary section.
+;; The arrow package will try to offer a single package for all things
+;; directional.
+
+;; This package will attempt to create an optimal use of arrow keys
+;; and modifiers, as well as combinations like hjkl. These
+;; combinations might be quickly mapped and remapped to functions that
+;; move and resize windows and frames, or do other things where the
+;; notion of say two or four direction applies. The package will start
+;; out assuredly simple, but we hope to find better ways to quickly
+;; assign and swap keys and commands, bind and unbind keys, as the
+;; project develops.
 
 ;;; Code:
 
