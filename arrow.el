@@ -37,14 +37,14 @@
 (defun arrow-window-increase-height ()
   "Increase window height."
   (interactive)
-  (if (window-in-direction 'down)
+  (if (window-in-direction 'below)
       (enlarge-window 1)
     (shrink-window 1)))
 
 (defun arrow-window-decrease-height ()
   "Decrease window height."
   (interactive)
-  (if (window-in-direction 'down)
+  (if (window-in-direction 'below)
       (shrink-window 1)
     (enlarge-window 1)))
 
