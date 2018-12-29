@@ -1,0 +1,11 @@
+To install.
+
+#+BEGIN_SRC sh
+mkdir -p ~/.emacs.d/lisp
+git clone https://github.com/bradyt/arrow.git ~/.emacs.d/lisp/arrow
+#+END_SRC
+
+#+BEGIN_SRC elisp
+(add-to-list 'load-path "~/.emacs.d/lisp/arrow/")
+(autoload 'arrow-mode "arrow" nil t)
+#+END_SRC
