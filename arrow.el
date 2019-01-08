@@ -6,7 +6,7 @@
 ;; Version: 0.0.1
 ;; Keywords:convenience
 ;; Homepage: https://github.com/bradyt/arrow
-;; Package-Requires: ((emacs "24"))
+;; Package-Requires: ((emacs "24") (zoom-frm "0"))
 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -38,6 +38,7 @@
 
 ;;; Code:
 
+(require 'zoom-frm)
 (when (require 'evil nil t)
   (define-key evil-motion-state-map [left] nil)
   (define-key evil-motion-state-map [right] nil)
@@ -85,16 +86,18 @@
 (define-minor-mode arrow-mode nil
   :global t
   :require 'arrow
-  :keymap `((,(kbd "<M-down>")      . arrow-window-increase-height)
-            (,(kbd "<M-up>")        . arrow-window-decrease-height)
-            (,(kbd "<M-right>")     . arrow-window-increase-width)
-            (,(kbd "<M-left>")      . arrow-window-decrease-width)
-            (,(kbd "<down>")        . windmove-down)
-            (,(kbd "<up>")          . windmove-up)
-            (,(kbd "<right>")       . windmove-right)
-            (,(kbd "<left>")        . windmove-left)
-            (,(kbd "<wheel-right>") . arrow-scroll-left)
-            (,(kbd "<wheel-left>")  . arrow-scroll-right)))
+  :keymap `((,(kbd "<M-down>")       . arrow-window-increase-height)
+            (,(kbd "<M-up>")         . arrow-window-decrease-height)
+            (,(kbd "<M-right>")      . arrow-window-increase-width)
+            (,(kbd "<M-left>")       . arrow-window-decrease-width)
+            (,(kbd "<down>")         . windmove-down)
+            (,(kbd "<up>")           . windmove-up)
+            (,(kbd "<right>")        . windmove-right)
+            (,(kbd "<left>")         . windmove-left)
+            (,(kbd "<wheel-right>")  . arrow-scroll-left)
+            (,(kbd "<wheel-left>")   . arrow-scroll-right)
+            (,(kbd "<C-wheel-down>") . zoom-frm-out)
+            (,(kbd "<C-wheel-up>")   . zoom-frm-in)))
 
 (provide 'arrow)
 ;;; arrow.el ends here
